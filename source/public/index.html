@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>	
+  <meta charset="UTF-8">
+  
+  <title>ToDos App</title>
+
+	
+  <!-- stylesheets -->	
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles/index.css">
+
+  <!-- Webfont Jost -->	
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+	
+  <!-- scripts -->		
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+	
+
+
+    <script id="note-list-template" type="text/x-handlebars-template">
+      <h1>dsdjfsdjh</h1>
+      {{#each notes}}
+        <div class="todo-card">
+          <div class="todo-due-date">
+            <div class="todo-title">
+              <p>Duedate: {{duedate}}</p>
+            </div>
+            <div class="todo-title">
+              <p>Created: {{created}}</p>
+            </div>
+            <!--<div class="checkbox">
+              <input type="checkbox" name="checkbox" id="checkbox-${note.id}">
+              <label for="checkbox-${note.id}">Finished</label>
+            </div> -->
+          </div> 
+          <div class="todo-content">
+            <div class="todo-title">
+              <p class="bold">{{title}}</p>
+            </div>
+            <div class="todo-content-txtarea">
+              <textarea class="textarea" readonly>{{text}}</textarea>
+            </div>
+          </div>
+          <div class="todo-edit-btn">
+            <input id="xyz" type="hidden" value="{{ID}}">
+          <button class="edit-btn">Edit</button>
+          </div>
+        </div>
+      {{/each}}
+    
+    </script>
+</head>
+
+<body class="light-theme">
+
+	<!-- Header Section -->	
+  <header>
+    <div class="inter-nav">
+    <div class="top">
+      <button onclick="location.href = 'new.html';">Create new Note</button>
+      
+      <select id="color-themes" class="color-themes">
+        <option value="light-theme" id='light-theme'>Light-Theme</option>
+        <option value="dark-theme" id='dark-theme'>Dark-Theme</option>
+      </select>
+    </div>
+
+    <div class="filter">
+      <div class="filter-nav">
+        <button>By finish Date</button>
+        <button>By created Date</button>
+        <button>By Importance</button>
+
+        <button>Show finished</button>
+      </div>
+    </div>
+  </div>
+  </header>
+	
+<!-- Content Section -->	
+
+  <div id="content-wrapper" class="content-wrapper">
+
+    
+
+
+
+    <!-- <div class="todo-card">
+          <div class="todo-due-date">
+            <div class="todo-title">
+              <p>Duedate: {{note.duedate}}</p>
+            </div>
+            <div class="todo-title">
+              <p>Created: {{note.created}}</p>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" name="checkbox" id="checkbox-${note.id}">
+              <label for="checkbox-${note.id}">Finished</label>
+            </div>
+          </div>
+          <div class="todo-content">
+            <div class="todo-title">
+              <p class="bold">{{note.title}}</p>
+            </div>
+            <div class="todo-content-txtarea">
+              <textarea class="textarea-readonly" readonly>{{note.text}}</textarea>
+            </div>
+          </div>
+          <div class="todo-edit-btn">
+            
+          <button class="edit-btn" onclick="editNote(${note.id})">Edit</button>
+  
+          </div>
+        </div>`-->
+  </div>
+
+	<!-- Footer Section -->	
+
+  <footer>
+
+  </footer>
+	
+  <script src="js/index.js" type="module"></script>
+
+  <script src="js/controllers/note-controller.js" type="module"></script>
+  <script src="js/services/note.js" type="module"></script>
+
+
+
+	<!-- Time handle -->	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+</body>
+
+</html>

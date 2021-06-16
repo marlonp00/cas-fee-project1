@@ -1,0 +1,269 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;    
+    font-weight: 500;
+    margin: 0;
+}
+
+/***** VARS *****/
+
+:root {
+    --white: #fff;
+    --black: #000;
+    --bg-color-light:var(--white);
+    --bg-color-dark:#202127;
+    --primary-color-light: #c9ada7;
+    --secondary-color-light: #f2e9e4;
+    --primary-color-dark: #4a4e69;
+    --secondary-color-dark: #22223b;
+}
+
+/***** THEME COLOR *****/
+
+.light-theme {
+    --background-theme-color: var(--bg-color-light);
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+}
+
+.dark-theme {
+    --background-theme-color: var(--bg-color-dark);
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+}
+
+
+/***** HTML ELEMENTS *****/
+body {
+    background-color: var(--background-theme-color);
+    transition: all 500ms;
+}
+
+h1 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-weight: 500;
+    color: var(--white);
+    text-align: center;
+}
+
+header {
+    background-color: var(--primary-color);
+    transition: all 250ms;
+}
+
+p {
+    font-size: 12px;
+}
+
+span {
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 32px;
+}
+
+footer {
+    position: fixed;
+    display: flex;
+    background-color: var(--primary-color); 
+    color: var(--white);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: all 250ms;
+}
+
+/*****  HEADER *****/
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/***** FILTERS *****/
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.filter-nav {
+    width: 60%;
+    display: flex;
+}
+
+button,
+.color-themes {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    margin: 8px;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    text-align: center;
+    -moz-appearance: none;
+    transition: all 250ms;
+}
+
+.filter-left button {
+    width: 16px;
+}
+
+button:hover {
+    opacity: 0.6;
+}
+
+/*****  CONTENT *****/
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80vh;
+    padding: 16px;
+}
+
+.empty-inbox {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--content-color);
+    transition: all 250ms;
+}
+
+.todo-card {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    color: var(--content-color);
+    border-bottom: solid 0.5px;
+}
+
+.todo-card.finished {
+    display: none;
+}
+
+.todo-due-date {
+    width: 25%;
+    margin-right: 20px;
+    margin-left: 16px;
+}
+
+.todo-title {
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.todo-title .bold {
+    font-weight: 400;
+}
+
+.todo-content {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.todo-content-txtarea {
+    height: 50%;
+}
+
+.textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    border: solid 0.5px;
+}
+
+.todo-edit-btn {
+    display: flex;
+    align-items: center;
+}
+
+.todo-edit-btn a {
+    width: 25%;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 250ms;
+}
+
+.todo-edit-btn a:hover {
+    color: var(--secondary-color);
+    
+}
+
+/***** FOOTER *****/
+
+.social-media-icons a:hover {
+    color: var(--secondary-color);
+}
+
+/***** TODO NOTES *****/
+
+.form {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title,
+.description,
+.importance,
+.duedate {
+    width: 50%;
+    margin: 16px;
+    display: flex;
+}
+
+.description {
+    height: 20%;
+}
+
+#duedate {
+    width: 20%;
+}
+
+.label {
+    width: 20%;
+    margin-right: 16px;
+}
+
+.input {
+    width: 80%;
+    border-radius: 5px;
+    border: solid 0.5px;
+}
+
+#description {
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: solid 0.5px;
+}
+
+.buttons {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-left: 16px;
+}
+
