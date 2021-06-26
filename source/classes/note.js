@@ -3,54 +3,12 @@
 
 export class Note {
 
-    constructor(duedate, created, title, text) {
+    constructor(duedate, createdDate, title, text, importance, state) {
       this.duedate = duedate;
-      this.created = created;
+      this.createddate = createdDate;
       this.title = title;
       this.text = text;
+	    this.importance = importance;
       this.state = "OK";
   }
-    // GETTER METHODS
-    getDueDate = () => {
-        return this.duedate;
-    }
-    getCreated = () => {
-        return this.created;
-    }
-    getTitle = () => {
-        return this.title;
-    }
-    getText = () => {
-        return this.text;
-    }
-    getState = () => {
-        return this.state;
-    }
-    
-    // SETTER METHODS
-    setDueDate = (date) => {
-        this.date = date;
-    }
-    setCreated = (created) => {
-        this.created = created;
-    }
-    setTitle = (title) => {
-        this.title = title;
-    }
-    setText = (text) => {
-        this.text = text;
-    }
-    setState = (setState) => {
-        this.setState = setState;
-    }
-
-    toJSON() {
-        return {
-            date: this.date,
-            created: this.created,
-            title: this.title,
-            text: this.text
-        };
-    }
-
 }

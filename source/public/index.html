@@ -10,7 +10,7 @@
   <!-- stylesheets -->	
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" type="text/css" href="./styles/index.css">
 
   <!-- Webfont Jost -->	
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,7 +23,6 @@
 
 
     <script id="note-list-template" type="text/x-handlebars-template">
-      <h1>dsdjfsdjh</h1>
       {{#each notes}}
         <div class="todo-card">
           <div class="todo-due-date">
@@ -31,7 +30,7 @@
               <p>Duedate: {{duedate}}</p>
             </div>
             <div class="todo-title">
-              <p>Created: {{created}}</p>
+              <p>Created: {{createddate}}</p>
             </div>
             <!--<div class="checkbox">
               <input type="checkbox" name="checkbox" id="checkbox-${note.id}">
@@ -47,8 +46,10 @@
             </div>
           </div>
           <div class="todo-edit-btn">
-            <input id="xyz" type="hidden" value="{{ID}}">
-          <button class="edit-btn">Edit</button>
+            <input id="xyz" type="hidden" value="{{_id}}">
+          <button class="edit-btn" data-id="{{_id}}">Edit</button>
+          <button id="deleteNote" class="delete-btn"  data-id="{{_id}}">delete</button>
+
           </div>
         </div>
       {{/each}}
@@ -62,7 +63,7 @@
   <header>
     <div class="inter-nav">
     <div class="top">
-      <button onclick="location.href = 'new.html';">Create new Note</button>
+      <button id="newNote">Create new Note</button>
       
       <select id="color-themes" class="color-themes">
         <option value="light-theme" id='light-theme'>Light-Theme</option>
@@ -72,51 +73,107 @@
 
     <div class="filter">
       <div class="filter-nav">
-        <button>By finish Date</button>
-        <button>By created Date</button>
-        <button>By Importance</button>
-
-        <button>Show finished</button>
+        <button data-order="finishDate" id="finishDateFilter" >By finish Date</button>
+        <button data-order="createdDate" id="createdDateFilter" >By created Date</button>
+        <button data-order="importance" id="importanceFilter">By Importance</button>
+        <button data-filter="finished" id="finishedFilter">Show finished</button>
       </div>
     </div>
   </div>
   </header>
 	
+<!-- Create Form -->
+<div id="create-form" class="create-form">
+  <form class="form">
+    <div class="title">
+      <label class="label" for="title">Title</label>
+      <input class="input" type="text" id="title" name="title" />
+    </div>
+
+    <div class="description">
+      <label class="label" for="description">Description</label>
+      <textarea class="input" id="description" name="text"></textarea>
+    </div>
+
+    <div class="importance">
+      <label class="label" for="important">Importance</label>
+      <div id="important">
+        <input type="radio" id="imp_5" name="important" value="4"/>
+        <label for="imp_5" title="text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="imp_4" name="important" value="3"/>
+        <label for="imp_4" title="text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="imp_3" name="important" value="2"/>
+        <label for="imp_3" title="text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="imp_2" name="important" value="1"/>
+        <label for="imp_2" title="text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="imp_1" name="important" value="0"/>
+        <label for="imp_1" title="text"><i class='far fa-surprise'></i></label>
+      </div>
+    </div>
+
+    <div class="duedate">
+      <label class="label" for="duedate">Due by:</label>
+      <input class="input" type="date" id="duedate" name="duedate" />
+    </div>
+
+    <div class="buttons">
+      <button id="saveNote" type="submit">Save</button>
+      <button id="cancelNote" type="button" >Cancel</button>
+    </div>
+  </form>
+</div>
+
+<!-- Create Form End -->
+
+<!-- Edit Form -->
+<div id="edit-form" class="edit-form" data-id="">
+  <form class="form">
+    <div class="title">
+      <label class="label" for="edit-title">Title</label>
+      <input class="input" type="text" id="edit-title" name="edittitle" />
+    </div>
+
+    <div class="description">
+      <label class="label" for="edit-description">Description</label>
+      <textarea class="input" id="edit-description" name="edittext"></textarea>
+    </div>
+
+    <div class="importance">
+      <label class="label" for="edit-important">Importance</label>
+      <div id="edit-important">
+        <input type="radio" id="edit-imp_5" name="editimportant" value="4"/>
+        <label for="edit-imp_5" title="edit-text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="edit-imp_4" name="editimportant" value="3"/>
+        <label for="edit-imp_4" title="edit-text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="edit-imp_3" name="editimportant" value="2"/>
+        <label for="edit-imp_3" title="edit-text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="edit-imp_2" name="editimportant" value="1"/>
+        <label for="edit-imp_2" title="edit-text"><i class='far fa-surprise'></i></label>
+        <input type="radio" id="edit-imp_1" name="editimportant" value="0"/>
+        <label for="edit-imp_1" title="edit-text"><i class='far fa-surprise'></i></label>
+      </div>
+    </div>
+
+    <div class="duedate">
+      <label class="label" for="edit-duedate">Due by:</label>
+      <input class="input" type="date" id="edit-duedate" name="editduedate" />
+    </div>
+
+    <div class="buttons">
+      <button id="edit-saveNote" type="submit">Save</button>
+      <button id="edit-cancelNote" type="button" >Cancel</button>
+    </div>
+  </form>
+</div>
+
+<!-- Edit Form End -->
+
+
 <!-- Content Section -->	
 
   <div id="content-wrapper" class="content-wrapper">
 
-    
-
-
-
-    <!-- <div class="todo-card">
-          <div class="todo-due-date">
-            <div class="todo-title">
-              <p>Duedate: {{note.duedate}}</p>
-            </div>
-            <div class="todo-title">
-              <p>Created: {{note.created}}</p>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" name="checkbox" id="checkbox-${note.id}">
-              <label for="checkbox-${note.id}">Finished</label>
-            </div>
-          </div>
-          <div class="todo-content">
-            <div class="todo-title">
-              <p class="bold">{{note.title}}</p>
-            </div>
-            <div class="todo-content-txtarea">
-              <textarea class="textarea-readonly" readonly>{{note.text}}</textarea>
-            </div>
-          </div>
-          <div class="todo-edit-btn">
-            
-          <button class="edit-btn" onclick="editNote(${note.id})">Edit</button>
   
-          </div>
-        </div>`-->
   </div>
 
 	<!-- Footer Section -->	
@@ -128,7 +185,6 @@
   <script src="js/index.js" type="module"></script>
 
   <script src="js/controllers/note-controller.js" type="module"></script>
-  <script src="js/services/note.js" type="module"></script>
 
 
 

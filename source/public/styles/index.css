@@ -267,3 +267,65 @@ button:hover {
     margin-left: 16px;
 }
 
+
+/***** Importance  *****/
+ 
+#important:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+
+#important:not(:checked) > label {
+    float: right;
+    width: 20px;
+    cursor: pointer;
+    font-size: 32px;
+    color: #ccc;
+}
+
+#important:not(:checked) > label::before {
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+#important > input:checked ~ label {
+    color: var(--primary-color);
+}
+
+/***** Importance  *****/
+ 
+#edit-important:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+
+#edit-important:not(:checked) > label {
+    float: right;
+    width: 20px;
+    cursor: pointer;
+    font-size: 32px;
+    color: #ccc;
+}
+
+#edit-important:not(:checked) > label::before {
+    font-family: "Font Awesome 5 Free", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+#edit-important > input:checked ~ label {
+    color: var(--primary-color);
+}
+
+.create-form {
+    display: none;
+    transition: all 250ms;
+}
+
+.edit-form {
+    display: none;
+    transition: all 250ms;
+}

@@ -1,35 +1,28 @@
-import {Note} from '../classes/note.js';
+import { httpService } from './http-service.js'
 
 export class NoteService {
-  constructor() {
-      this.notes = [];
-  }
 
-  getDummyNotes() {
-    let dummydata = [];
+    async createNote(dueDate, createdDate, title, text, importance, state) {
+        return await httpService.ajax("POST", "/notes/", { dueDate: dueDate, createdDate: createdDate,  title: title, text: text, importance: importance, state: state });
+    }
 
-    let note1 = new Note(1, '27.06.2021', '11.04.2021', 'geschenk übergeben', 'Lorem ipsum bla');
+    async editNote(id, dueDate, title, text, importance) {
+        console.log('DATA BEFORE HTTPS REQUEST: ', id, dueDate, title, text, importance);
+        return await httpService.ajax("POST", `/notes/${id}`, { dueDate: dueDate, title: title, text: text, importance: importance});
+    }
 
-    dummydata.push(note1.toJSON());
-    this.notes = dummydata;
-  }
+    async showNotes() {
+        return await httpService.ajax("GET", "/notes/", undefined);
+    }
 
-  showNote(id) {
-    // URL routes /notes/:id/
-    // http:localhost:3000/notes/asdaASDfaxdf
+    async showNote(id) {
+        return await httpService.ajax("GET", `/notes/${id}`, undefined);
+    }
 
-    var response = "JSON";
-    var convertedNote = response.ToObject();
-
-    return convertedNote;
-  }
-
-  addNote(id, duedate, created, title, text) {
-      const note = new Note(id, duedate, created, title, text);
-      this.notes.push(note);
-      return note;
-
-  }  
+    async deleteNote(id) {
+        console.log("hello delete", id);
+        return await httpService.ajax("DELETE", `/notes/${id}`, undefined);
+    }
 }
 
 export const noteService = new NoteService();
